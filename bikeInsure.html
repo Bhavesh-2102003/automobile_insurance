@@ -1,0 +1,213 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up Form</title>
+        <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
+        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/carInsure.css">
+    </head>
+    <body>
+      <div class="row">
+    <div class="col-md-12">
+      <form action="index.html" method="post">
+        <h2> Insure within minutes </h1>
+        
+        <fieldset id="form">
+          
+          <legend><span class="number">1</span> Tell us about your Bike</legend>
+        
+          <label for="name">Enter car make and model  [Eg.Apache RTR 160 2021]</label>
+          <input type="text" id="name" name="user_name">
+        
+          <label for="email">Variant [Eg.SX(0)] </label>
+          <input type="text" id="mail" name="user_email">
+       
+          <label for="password">Registration Year</label>
+          <input type="number" id="password"       name="user_password">
+        
+          <label>Fuel Type :</label>
+          <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Petrol</label><br>
+          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">Diesel</label>
+
+          <label for="password">Policy Expiry Date</label>
+          <input type="date" id="password"       name="user_password">
+
+          <label>Made a Claim in previous policy?</label>
+          <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Yes</label><br>
+          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">No</label>
+
+          <label>Is this a commercial bike?</label>
+          <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Yes</label><br>
+          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">No</label>
+          
+
+          <label>Owner Type:</label>
+          <input type="radio" id="first_owner" value="first" name="owner_type">
+          <label for="first_owner" class="light">First Owner</label><br>
+          <input type="radio" id="second_owner" value="second" name="owner_type">
+          <label for="second_owner" class="light">Second Owner</label><br>
+          <input type="radio" id="third_owner" value="third" name="owner_type">
+          <label for="third_owner" class="light">Third Owner</label>
+
+
+          <label for="prev_insurance">Previous Insurance Provider</label>
+          <input type="text" id="prev_insurance" name="previous_insurance">
+
+
+          <label for="rc_upload">Upload Registration Certificate (RC):</label>
+          <input type="file" id="rc_upload" name="rc_document" accept=".pdf, .jpg, .png"><br>
+
+          <label for="policy_upload">Upload Previous Insurance Policy:</label>
+          <input type="file" id="policy_upload" name="policy_document" accept=".pdf, .jpg, .png"><br>
+
+          <label for="license_upload">Upload Driving License:</label>
+          <input type="file" id="license_upload" name="license_document" accept=".pdf, .jpg, .png">
+
+          
+        </fieldset>
+        <!-- <fieldset>  
+        
+          <legend><span class="number">2</span> Your Profile</legend>
+          
+         <label for="bio">Bio:</label>
+          <textarea id="bio" name="user_bio"></textarea>
+        
+       
+        
+         <label for="job">Job Role:</label>
+          <select id="job" name="user_job">
+            <optgroup label="Web">
+              <option value="frontend_developer">Front-End Developer</option>
+              <option value="php_developer">PHP Developer</option>
+              <option value="python_developer">Python Developer</option>
+              <option value="rails_developer">Rails Developer</option>
+              <option value="web_designer">Web Designer</option>
+              <option value="wordpress_developer">Wordpress Developer</option>
+            </optgroup>
+            <optgroup label="Mobile">
+              <option value="android_developer">Android Developer</option>
+              <option value="ios_developer">IOS Developer</option>
+              <option value="mobile_designer">Mobile Designer</option>
+            </optgroup>
+            <optgroup label="Business">
+              <option value="business_owner">Business Owner</option>
+              <option value="freelancer">Freelancer</option>
+            </optgroup>
+          </select>
+          
+          <label>Interests:</label>
+          <input type="checkbox" id="development" value="interest_development" name="user_interest"><label class="light" for="development">Development</label><br>
+          <input type="checkbox" id="design" value="interest_design" name="user_interest"><label class="light" for="design">Design</label><br>
+          <input type="checkbox" id="business" value="interest_business" name="user_interest"><label class="light" for="business">Business</label>
+          
+         </fieldset> -->
+       
+         <button type="button" id="viewQuoteBtn">View Quote</button>
+
+         
+        
+       </form>
+        </div>
+      </div>
+    
+
+
+<section class="plans__container" id="pricingTable" style="display: none; margin-top: 20px;">
+    <div class="plans">
+      <div class="plansHero">
+        <h1 class="plansHero__title">Simple, transparent pricing</h1>
+        <p class="plansHero__subtitle">No contracts. No suprise fees.</p>
+      </div>
+      <div class="planItem__container">
+        <!--free plan starts -->
+        <div class="planItem planItem--free">
+  
+          <div class="card">
+            <div class="card__header">
+              <div class="card__icon symbol symbol--rounded"></div>
+              <h2>Basic-Third Party</h2>
+            </div>
+            <div class="card__desc">Third-Party Only (Mandatory as per law, covers damages to others)</div>
+          </div>
+  
+          <div class="price">₹2,094<span>/ year</span></div>
+  
+          <ul class="featureList">
+            <li>Covers injuries, death, or property damage caused to third parties</li>
+            <li>Best for old cars or budget-conscious buyers</li>
+            <li class="disabled">No coverage for own vehicle damages</li>
+            
+          </ul>
+  
+          <button class="button">Get Started</button>
+        </div>
+        <!--free plan ends -->
+  
+        <!--pro plan starts -->
+        <div class="planItem planItem--pro">
+          <div class="card">
+            <div class="card__header">
+              <div class="card__icon symbol"></div>
+              <h2> Standard Plan </h2>
+              <div class="card__label label">Best Value</div>
+            </div>
+            <div class="card__desc">(Own Damage + Third-Party)</div>
+          </div>
+  
+          <div class="price">₹7,800<span>/ year</span></div>
+  
+          <ul class="featureList">
+            <li>Covers both third-party liabilities and own damage</li>
+            <li>Includes fire, theft, accidents, and natural calamities</li>
+            <li>Provides personal accident cover up to ₹15 lakh</li>
+            <li class="disabled">No Road Side Assistance</li>
+          </ul>
+  
+          <button class="button button--pink" ><a href="payment.html">Get Started</a></button>
+        </div>
+        <!--pro plan ends -->
+  
+        <!--entp plan starts -->
+        <div class="planItem planItem--entp">
+          <div class="card">
+            <div class="card__header">
+              <div class="card__icon"></div>
+              <h2> Comprehensive Plan</h2>
+            </div>
+            <div class="card__desc">Premium</div>
+          </div>
+  
+          <div class="price">₹12,500/year</div>
+  
+          <ul class="featureList">
+            <li>Covers everything in the standard plan plus additional benefits</li>
+            <li>Full claim settlement without depreciation cuts</li>
+            <li>Roadside Assistance – Towing, minor repairs, emergency fuel</li>
+            <li>Engine & Gearbox Protection – Covers water damage, oil leakage</li>
+            
+          </ul>
+  
+          <button class="button button--white">Get Started</button>
+        </div>
+        <!--entp plan ends -->
+  
+      </div>
+    </div>
+  </section>
+  <script>
+    document.getElementById("viewQuoteBtn").addEventListener("click", function() {
+        document.querySelector("form").style.display = "none";
+        document.getElementById("pricingTable").style.display = "block";
+    });
+    document.querySelectorAll("input[name='user_age']").forEach((radio) => {
+        radio.addEventListener("change", function() {
+            if (this.value === "over_13") { // Assuming "over_13" is mapped to "No"
+                alert("You have No Claim Bonus (NCB)!");
+            }
+        });
+    });
+</script>
+
+    </body>
+</html>
