@@ -17,8 +17,23 @@
           
           <legend><span class="number">1</span> Tell us about your car</legend>
         
-          <label for="name">Enter car make and model  [Eg.Hyundai Creta 2021]</label>
-          <input type="text" id="name" name="user_name">
+  
+
+          <label for="carSelect">Select Car Make and Model</label>
+          <select id="carSelect" name="car_make_model">
+              <option value="">-- Select Car --</option>
+              <option value="Hyundai Creta 2021">Hyundai Creta 2021</option>
+              <option value="Maruti Suzuki Swift 2022">Maruti Suzuki Swift 2022</option>
+              <option value="Honda City 2023">Honda City 2023</option>
+              <option value="Tata Nexon 2021">Tata Nexon 2021</option>
+              <option value="Toyota Fortuner 2022">Toyota Fortuner 2022</option>
+              <option value="Kia Seltos 2023">Kia Seltos 2023</option>
+              <option value="Mahindra Thar 2022">Mahindra Thar 2022</option>
+              <option value="MG Hector 2021">MG Hector 2021</option>
+              <option value="Volkswagen Virtus 2023">Volkswagen Virtus 2023</option>
+              <option value="Skoda Slavia 2022">Skoda Slavia 2022</option>
+              <option value="Skoda Slavia 2022">Other</option>
+          </select>
         
           <label for="email">Variant [Eg.SX(0)] </label>
           <input type="text" id="mail" name="user_email">
@@ -28,7 +43,11 @@
         
           <label>Fuel Type :</label>
           <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Petrol</label><br>
-          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">Diesel</label>
+          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">Diesel</label><br>  
+          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">CNG</label><br>
+          <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">Electric</label>
+
+
 
           <label for="password">Policy Expiry Date</label>
           <input type="date" id="password"       name="user_password">
@@ -37,9 +56,15 @@
           <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Yes</label><br>
           <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">No</label>
 
+          <label for="policy_upload">Upload Previous Insurance Policy:</label>
+          <input type="file" id="policy_upload" name="policy_document" accept=".pdf, .jpg, .png"><br>
+
           <label>Is this a commercial car?</label>
           <input type="radio" id="under_13" value="under_13" name="user_age"><label for="under_13" class="light">Yes</label><br>
           <input type="radio" id="over_13" value="over_13" name="user_age"><label for="over_13" class="light">No</label>
+
+          <label for="prev_insurance">Enter the number of Kilometers Driven</label>
+          <input type="text" id="prev_insurance" name="previous_insurance">
           
           <label>Owner Type:</label>
           <input type="radio" id="first_owner" value="first" name="owner_type">
@@ -47,26 +72,53 @@
           <input type="radio" id="second_owner" value="second" name="owner_type">
           <label for="second_owner" class="light">Second Owner</label><br>
           <input type="radio" id="third_owner" value="third" name="owner_type">
-          <label for="third_owner" class="light">Third Owner</label>
+          <label for="third_owner" class="light">Other</label>
 
 
-          <label for="prev_insurance">Previous Insurance Provider</label>
-          <input type="text" id="prev_insurance" name="previous_insurance">
+          <label for="prevInsurance">Previous Insurance Provider</label>
+    <select id="prevInsurance" name="previous_insurance" onchange="showOtherInsurer(this.value)">
+        <option value="">-- Select Insurer --</option>
+        <option value="ICICI Lombard">ICICI Lombard</option>
+        <option value="Bajaj Allianz">Bajaj Allianz</option>
+        <option value="HDFC ERGO">HDFC ERGO</option>
+        <option value="Tata AIG">Tata AIG</option>
+        <option value="Reliance General">Reliance General</option>
+        <option value="SBI General">SBI General</option>
+        <option value="National Insurance">National Insurance</option>
+        <option value="New India Assurance">New India Assurance</option>
+        <option value="United India Insurance">United India Insurance</option>
+        <option value="Other">Other</option>
+    </select>
+
+
+  
+
+          <legend><span class="number">2</span> Tell us about yourself</legend>
+
+          <label for="password">Enter your Name</label>
+          <input type="number" id="password"       name="user_password">
+
+          <label for="password">Enter Pincode</label>
+          <input type="number" id="password"       name="user_password">
+
           <label for="password">Enter Contact Number</label>
           <input type="number" id="password"       name="user_password">
-          <label for="password">Enter OTP</label>
+
+          <label for="password">Enter Mail</label>
+          <input type="number" id="password"       name="user_password">
+
+          <label for="password">Enter Mobile OTP</label>
+          <input type="number" id="password"       name="user_password">
+
+          <label for="password">Enter GST Number(Optional)</label>
           <input type="number" id="password"       name="user_password">
 
 
           <label for="rc_upload">Upload Registration Certificate (RC):</label>
           <input type="file" id="rc_upload" name="rc_document" accept=".pdf, .jpg, .png"><br>
 
-          <label for="policy_upload">Upload Previous Insurance Policy:</label>
-          <input type="file" id="policy_upload" name="policy_document" accept=".pdf, .jpg, .png"><br>
-
           <label for="license_upload">Upload Driving License:</label>
           <input type="file" id="license_upload" name="license_document" accept=".pdf, .jpg, .png">
-
 
         </fieldset>
         <!-- <fieldset>  
@@ -143,7 +195,7 @@
             
           </ul>
   
-          <button class="button">Get Started</button>
+          <button class="button"><a href="carPayment.html">Get Started</a></button>
         </div>
         <!--free plan ends -->
   
@@ -167,7 +219,7 @@
             <li class="disabled">No Road Side Assistance</li>
           </ul>
   
-          <button class="button button--pink" ><a href="payment.html">Get Started</a></button>
+          <button class="button button--pink" ><a href="carPayment.html">Get Started</a></button>
         </div>
         <!--pro plan ends -->
   

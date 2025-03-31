@@ -13,6 +13,10 @@ body {
   justify-content: center;
   background: #4070f4;
 }
+a {
+  color: inherit;  /* Inherits text color from the parent element */
+  text-decoration: none; /* Removes underline */
+}
 :where(.container, form, .input-field, header) {
   display: flex;
   flex-direction: column;

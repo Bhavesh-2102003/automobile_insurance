@@ -3,71 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track your Claim</title>
-    <link href="css/claimTracking.css" rel="stylesheet">
+    <title>Track Your Claim</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .hero-bg {
+            background-image: url('https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        .status-step {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .status-step:before {
+            content: "";
+            position: absolute;
+            left: 0.75rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #e5e7eb;
+        }
+        .status-step:first-child:before {
+            top: 1.5rem;
+        }
+        .status-step:last-child:before {
+            bottom: 1.5rem;
+        }
+        .status-dot {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .status-active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .status-completed {
+            background-color: #10b981;
+            color: white;
+        }
+        .status-pending {
+            background-color: #e5e7eb;
+            color: #6b7280;
+        }
+    </style>
 </head>
-<body>
-
-    <div class="card">
-        <div class="title">Track your Claim</div>
-        <div class="info">
-            <div class="row">
-                <div class="col-7">
-                    <span id="heading">Date</span><br>
-                    <span id="details">10 October 2018</span>
-                </div>
-                <div class="col-5 pull-right">
-                    <span id="heading">Ckaim No.</span><br>
-                    <span id="details">DWDIHB2521SADA1</span>
-                </div>
-            </div>      
-        </div>      
-        <div class="pricing">
-            <div class="row">
-                <div class="col-9">
-                    <span id="name">Insurance Claim for Own Damage</span>  
-                </div>
-                <div class="col-3">
-                    <span id="price">;IDV-1,23,000</span>
-                </div>
-            </div>
-            <div class="row">
-                
-               
-            </div>
-        </div>
-        <div class="total">
-            <div class="row">
-                <div class="col-9"></div>
-                <div class="col-3"><big>&pound;262.99</big></div>
-            </div>
-        </div>
-        <div class="tracking">
-            <div class="title">Tracking Order</div>
-        </div>
-        <div class="progress-track">
-            <ul id="progressbar">
-                <li class="step0 active " id="step1">Claim Submitted</li>
-                <li class="step0 active text-center" id="step2">Documents reviewed by Insurance Manager</li>
-                <li class="step0 active text-right" id="step3">IDV Accepted by User</li>
-                <li class="step0 text-right" id="step4">Paynent Received</li>
-            </ul>
-        </div>
-        
-
-        <div class="footer">
-            <div class="row">
-                <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/YBWc55P.png"></div>
-                <div class="col-10">Want any help? Please &nbsp;<a> contact us</a></div>
-            </div>
+<body class="min-h-screen bg-gray-100">
+    <!-- Header Section -->
+    <header class="hero-bg h-64 flex flex-col">
+        <nav class="bg-white bg-opacity-90 shadow-sm">
             
-           
+        </nav>
+        <div class="flex-grow flex items-center justify-center">
+            <h2 class="text-4xl font-bold text-white text-center">Track Your Claim</h2>
         </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-4 py-8 -mt-10">
+        <div class="bg-white rounded-lg shadow-lg p-8 max-w-3xl mx-auto">
+            <div id="claimDetails" class="mb-8">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4">Claim Information</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-500">Claim ID</p>
+                        <p id="claimId" class="font-medium">CLM289273</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Policy ID</p>
+                        <p id="policyId" class="font-medium">POL-2023-<span id="policySuffix">001</span></p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Claimant's Name</p>
+                        <p id="claimName" class="font-medium">Bhavesh LR</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Reviewing Officer</p>
+                        <p id="reviewingOfficer" class="font-medium">John Smith (ID: RO-425)</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Status</p>
+                        <p id="claimStatus" class="font-medium">Pending</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500">Date Submitted</p>
+                        <p id="claimDate" class="font-medium">23/02/2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-6">Claim Status</h3>
+                <div class="space-y-8">
+                    <div class="status-step">
+                        <div class="status-dot status-completed">
+                            <i class="fas fa-check text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">Claim Submitted</p>
+                            <p class="text-sm text-gray-500">Your claim has been received</p>
+                        </div>
+                    </div>
+                    <div class="status-step">
+                        <div class="status-dot status-active">
+                            <i class="fas fa-sync-alt text-xs animate-spin"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">Under Review</p>
+                            <p class="text-sm text-gray-500">Our team is reviewing your claim</p>
+                        </div>
+                    </div>
+                    <div class="status-step">
+                        <div class="status-dot status-pending">
+                            <i class="far fa-clock text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">Processing</p>
+                            <p class="text-sm text-gray-500">Will begin after review is complete</p>
+                        </div>
+                    </div>
+                    <div class="status-step">
+                        <div class="status-dot status-pending">
+                            <i class="far fa-check-circle text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-900">Completed</p>
+                            <p class="text-sm text-gray-500">Your claim will be finalized</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div style="display: flex; justify-content: center; align-items: center; margin-bottom:10px">
+        <button onclick="location.href='index.html'" 
+            style="background:#007bff; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">
+            Go Home
+        </button>
     </div>
-    <script>
-        window.onload = function() {
-            alert("OTP Verified");
-        };
-    </script>
+
+
+    <!-- Footer Section -->
+    <!-- <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2023 ClaimTracker. All rights reserved.</p>
+        </div>
+    </footer> -->
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const claim = JSON.parse(localStorage.getItem('currentClaim'));
+            if (claim) {
+                document.getElementById('claimId').textContent = claim.id;
+                document.getElementById('claimName').textContent = claim.name;
+                document.getElementById('claimDate').textContent = new Date(claim.date).toLocaleDateString();
+                document.getElementById('claimStatus').textContent = claim.status || 'Submitted';
+                if (claim.policySuffix) {
+                    document.getElementById('policySuffix').textContent = claim.policySuffix;
+                }
+            } else {
+                // No claim found, redirect to form
+                window.location.href = 'index.html';
+            }
+        });
+    </script> -->
 </body>
 </html>
