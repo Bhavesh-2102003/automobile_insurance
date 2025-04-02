@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadside Assistance | Hexacover</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Hexacover Roadside Assistance</h1>
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#request">Request Assistance</a></li>
+                <li><a href="#status">Track Status</a></li>
+                <li><a href="#contact">Emergency Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="hero">
+        <h2>24/7 Roadside Assistance</h2>
+        <p>Get help anywhere, anytime with Hexacover's quick and reliable assistance.</p>
+        <button onclick="requestAssistance()">Request Assistance</button>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-list">
+            <div class="service-item">🔧 Mechanical Repairs</div>
+            <div class="service-item">🛻 Towing Service</div>
+            <div class="service-item">🔋 Battery Jump Start</div>
+            <div class="service-item">⛽ Fuel Delivery</div>
+            <div class="service-item">🔑 Lockout Service</div>
+            <div class="service-item">🚗 Flat Tire Assistance</div>
+        </div>
+    </section>
+
+    <section id="request">
+        <h2>Request Assistance</h2>
+        <form>
+            <label for="location">Your Location:</label>
+            <input type="text" id="location" placeholder="Enter your location" required>
+            
+            <label for="service">Select Service:</label>
+            <select id="service">
+                <option>Mechanical Repairs</option>
+                <option>Towing Service</option>
+                <option>Battery Jump Start</option>
+                <option>Fuel Delivery</option>
+                <option>Lockout Service</option>
+                <option>Flat Tire Assistance</option>
+            </select>
+            
+            <button type="submit">Submit Request</button>
+        </form>
+    </section>
+
+    <section id="status">
+        <h2>Track Your Request</h2>
+        <p>Enter your request ID to check the status of your assistance request.</p>
+        <input type="text" id="request-id" placeholder="Enter Request ID">
+        <button onclick="trackStatus()">Track</button>
+        <div id="status-result"></div>
+    </section>
+
+    <section id="contact">
+        <h2>Emergency Contact</h2>
+        <p>Call our 24/7 helpline for immediate assistance: <strong>+1 800 555 1234</strong></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Hexacover Insurance. All rights reserved.</p>
+    </footer>
+</body>
+</html>
