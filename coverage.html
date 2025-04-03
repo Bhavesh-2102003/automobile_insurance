@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurance Coverage | HexaCover</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: 'rgb(29, 76, 209)',
+            secondary: 'rgb(103, 58, 183)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-bg {
+      background: linear-gradient(rgba(29,76,209,0.8), rgba(103,58,183,0.8)), 
+                  url('https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+    .card-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      transition: all 0.3s ease;
+    }
+    .card-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    }
+    .card-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(29,76,209,0.3),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: borderAnimation 3s linear infinite;
+    }
+    @keyframes borderAnimation {
+      0% { transform: rotate(45deg) translateX(-50%); }
+      100% { transform: rotate(45deg) translateX(50%); }
+    }
+    .card-content {
+      position: relative;
+      z-index: 1;
+      background: white;
+      border-radius: inherit;
+      height: 100%;
+    }
+    .floating-icon {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    .testimonial-card {
+      transition: all 0.3s ease;
+    }
+    .testimonial-card:hover {
+      transform: scale(1.02);
+    }
+    .comparison-table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .comparison-table tr:hover {
+      background: rgba(29,76,209,0.05);
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-primary">HexaCover</a>
+      <div class="flex items-center space-x-6">
+        <a href="coverage.html" class="text-primary font-medium">Coverage</a>
+        <a href="rsa.html" class="text-gray-700 hover:text-primary transition">Roadside</a>
+        <a href="login.html" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-800 transition">Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-[60vh] flex items-center justify-center text-center text-white px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Insurance Coverage Options</h1>
+      <p class="text-xl md:text-2xl mb-8">Tailored protection plans for your peace of mind</p>
+      <a href="#coverage-cards" class="bg-white text-primary font-semibold py-3 px-6 rounded-full transition-all duration-300 inline-block transform hover:scale-105">
+        Explore Plans
+      </a>
+    </div>
+  </section>
+
+  <!-- Floating Icons -->
+  <i class="fas fa-shield-alt text-6xl text-primary floating-icon" style="top:20%; left:10%"></i>
+  <i class="fas fa-car text-6xl text-secondary floating-icon" style="top:30%; right:15%"></i>
+  <i class="fas fa-coins text-6xl text-primary floating-icon" style="bottom:20%; left:20%"></i>
+
+  <!-- Coverage Cards -->
+  <section id="coverage-cards" class="py-16 px-4 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Comprehensive Coverage -->
+      <div class="card-container">
+        <div class="card-content p-8 text-center">
+          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-car text-4xl text-primary"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Comprehensive Coverage</h3>
+          <p class="text-gray-600 mb-6">Full protection for your vehicle against all risks</p>
+          <ul class="text-left mb-8 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Accident damage coverage</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Theft protection</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Natural disaster protection</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>24/7 roadside assistance</span>
+            </li>
+          </ul>
+          <a href="#contact" class="bg-primary hover:bg-blue-800 text-white font-medium py-2 px-6 rounded-full transition-all inline-block transform hover:scale-105">
+            Get Quote
+          </a>
+        </div>
+      </div>
+
+      <!-- Third-Party Liability -->
+      <div class="card-container">
+        <div class="card-content p-8 text-center">
+          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-shield-alt text-4xl text-primary"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Third-Party Liability</h3>
+          <p class="text-gray-600 mb-6">Essential protection against claims by third parties</p>
+          <ul class="text-left mb-8 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Bodily injury coverage</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Property damage protection</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Legal defense costs</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Basic roadside assistance</span>
+            </li>
+          </ul>
+          <a href="#contact" class="bg-primary hover:bg-blue-800 text-white font-medium py-2 px-6 rounded-full transition-all inline-block transform hover:scale-105">
+            Get Quote
+          </a>
+        </div>
+      </div>
+
+      <!-- Zero Depreciation -->
+      <div class="card-container">
+        <div class="card-content p-8 text-center">
+          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-coins text-4xl text-primary"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Zero Depreciation</h3>
+          <p class="text-gray-600 mb-6">Get full claim amount without depreciation deduction</p>
+          <ul class="text-left mb-8 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>No depreciation on parts</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Higher claim settlement</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>New car replacement option</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Premium roadside assistance</span>
+            </li>
+          </ul>
+          <a href="#contact" class="bg-primary hover:bg-blue-800 text-white font-medium py-2 px-6 rounded-full transition-all inline-block transform hover:scale-105">
+            Get Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-16 px-4 bg-gray-100">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mr-4">
+              <i class="fas fa-user"></i>
+            </div>
+            <div>
+              <h4 class="font-bold">Sarah Johnson</h4>
+              <p class="text-gray-500 text-sm">Business Owner</p>
+            </div>
+          </div>
+          <p class="text-gray-700">"The comprehensive coverage saved me thousands when my car was totaled. The claims process was smooth and fast!"</p>
+          <div class="mt-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mr-4">
+              <i class="fas fa-user"></i>
+            </div>
+            <div>
+              <h4 class="font-bold">Michael Chen</h4>
+              <p class="text-gray-500 text-sm">Software Engineer</p>
+            </div>
+          </div>
+          <p class="text-gray-700">"Zero depreciation coverage was worth every penny when I needed major repairs. Got full value for all parts!"</p>
+          <div class="mt-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mr-4">
+              <i class="fas fa-user"></i>
+            </div>
+            <div>
+              <h4 class="font-bold">David Wilson</h4>
+              <p class="text-gray-500 text-sm">Financial Advisor</p>
+            </div>
+          </div>
+          <p class="text-gray-700">"Third-party liability gave me peace of mind when I was at fault in an accident. They handled everything professionally."</p>
+          <div class="mt-4 text-yellow-400">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Coverage Comparison</h2>
+      <div class="overflow-x-auto">
+        <table class="comparison-table w-full">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="font-semibold py-3">Feature</th>
+              <th class="font-semibold py-3">Comprehensive</th>
+              <th class="font-semibold py-3">Third-Party</th>
+              <th class="font-semibold py-3">Zero Depreciation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-medium">Accident Coverage</td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+              <td class="text-red-500"><i class="fas fa-times"></i></td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+              <td class="font-medium">Theft Protection</td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+              <td class="text-red-500"><i class="fas fa-times"></i></td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+              <td class="font-medium">Third-Party Claims</td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+              <td class="font-medium">No Depreciation</td>
+              <td class="text-red-500"><i class="fas fa-times"></i></td>
+              <td class="text-red-500"><i class="fas fa-times"></i></td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+              <td class="font-medium">Natural Disasters</td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+              <td class="text-red-500"><i class="fas fa-times"></i></td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+              <td class="font-medium">Roadside Assistance</td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+              <td class="text-green-500"><i class="fas fa-check"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-16 px-4 bg-gray-100">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold mb-2">What's the difference between comprehensive and third-party coverage?</h3>
+          <p class="text-gray-600">Comprehensive coverage protects your own vehicle against damage from accidents, theft, and natural disasters, while third-party coverage protects you against claims made by others for injury or damage you cause.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold mb-2">Is zero depreciation worth the extra cost?</h3>
+          <p class="text-gray-600">Zero depreciation is especially valuable for new cars (0-3 years old) as it ensures you receive the full claim amount without deduction for wear and tear, making it cost-effective in case of major repairs.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold mb-2">Can I switch between coverage options?</h3>
+          <p class="text-gray-600">Yes, you can change your coverage options at renewal time. Our advisors can help you determine the best combination of coverage for your needs and budget.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 px-4 bg-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">Ready to Get Covered?</h2>
+      <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Our insurance specialists are ready to help you find the perfect coverage for your needs.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:+18005551234" class="bg-primary hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-full transition-all inline-block">
+          <i class="fas fa-phone-alt mr-2"></i> Call Now
+        </a>
+        <a href="dashboard-new.html" class="bg-white border-2 border-primary text-primary font-semibold py-3 px-6 rounded-full transition-all inline-block hover:bg-blue-50">
+          <i class="fas fa-user-circle mr-2"></i> Member Login
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12 px-4">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">HexaCover</h3>
+        <p class="text-gray-300">Your trusted partner for insurance protection since 2010.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="text-gray-300 hover:text-white transition">Home</a></li>
+          <li><a href="coverage.html" class="text-gray-300 hover:text-white transition">Coverage</a></li>
+          <li><a href="roadside-assistance.html" class="text-gray-300 hover:text-white transition">Roadside Assistance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Contact</h3>
+        <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i> support@hexacover.com</p>
+        <p class="text-gray-300"><i class="fas fa-phone-alt mr-2"></i> (800) 555-1234</p>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+      <p>© 2023 HexaCover. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Animate cards on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-container, .testimonial-card').forEach(card => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'all 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challan Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .hero-bg {
+            background-image: url('https://images.pexels.com/photos/163016/crash-test-collision-60-km-h-distraction-163016.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header with background image -->
+    <header class="hero-bg h-64 flex items-center justify-center relative">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 text-center">
+            <h1 class="text-4xl font-bold text-white mb-2">Challan Results</h1>
+            <p class="text-xl text-gray-200">Your vehicle fine details</p>
+        </div>
+    </header>
+
+    <!-- Main results section -->
+    <main class="container mx-auto px-4 py-8 max-w-3xl">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div id="results-container">
+                <!-- Results will be populated here by JavaScript -->
+            </div>
+            
+            <div class="mt-6">
+                <a href="index.html" class="text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">Need help? Contact our support team</p>
+            <p class="text-blue-300">
+                <i class="fas fa-envelope mr-2"></i>support@challanchecker.com
+            </p>
+            <p class="text-blue-300 mt-2">
+                <i class="fas fa-phone mr-2"></i>1800-123-4567
+            </p>
+            <p class="mt-4 text-sm text-gray-400">
+                &copy; 2023 Vehicle Challan Checker. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Get the vehicle number from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const vehicleNumber = urlParams.get('vehicle-number');
+        
+        // Get the results container
+        const resultsContainer = document.getElementById('results-container');
+        
+        // Display the vehicle number
+        resultsContainer.innerHTML = `
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                Results for Vehicle: <span class="text-blue-600">${vehicleNumber}</span>
+            </h2>
+        `;
+        
+        // Check if the vehicle number is our test case
+        if (vehicleNumber && vehicleNumber.toUpperCase() === 'ABC123') {
+            // Display fines table
+            resultsContainer.innerHTML += `
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Violation</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount (₹)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-15</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Over Speeding</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MG Road, Bangalore</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1000</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">Pending</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-22</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">No Parking</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Commercial Street, Bangalore</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">500</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">Paid</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-05</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Signal Jump</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Brigade Road, Bangalore</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1500</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">Pending</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr class="bg-gray-100">
+                                <td colspan="3" class="px-6 py-4 text-right text-sm font-medium text-gray-900">Total Due:</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2500</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-circle text-yellow-400"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-700">
+                                Please pay your pending fines within 30 days through <a href="mparivahan.com">mParivahan</a> to avoid additional penalties.<br>
+                                Extra Fines = Extra Premium<br>
+                                Drive Responsibly
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            // Display no fines found message
+            resultsContainer.innerHTML += `
+                <div class="rounded-md bg-green-50 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle text-green-400 text-2xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-lg font-medium text-green-800">No fines found!</h3>
+                            <div class="mt-2 text-sm text-green-700">
+                                <p>There are no pending challans for this vehicle number.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

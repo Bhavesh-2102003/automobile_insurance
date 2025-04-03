@@ -1,78 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadside Assistance | Hexacover</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24/7 Roadside Assistance | HexaCover</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: 'rgb(29, 76, 209)',
+            secondary: 'rgb(103, 58, 183)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-bg {
+      background: linear-gradient(rgba(29,76,209,0.8), rgba(103,58,183,0.8)), 
+                  url('https://images.pexels.com/photos/4662950/pexels-photo-4662950.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+    .service-card {
+      transition: all 0.3s ease;
+      border: 1px solid rgba(156, 163, 175, 0.2);
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .emergency-btn {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <h1>Hexacover Roadside Assistance</h1>
-        <nav>
-            <ul>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#request">Request Assistance</a></li>
-                <li><a href="#status">Track Status</a></li>
-                <li><a href="#contact">Emergency Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-xl font-bold text-primary">HexaCover</a>
+      <div class="flex items-center space-x-6">
+        <a href="coverage.html" class="text-gray-700 hover:text-primary transition">Plans</a>
+        <a href="roadside-assistance.html" class="text-primary font-medium">Roadside</a>
+        <a href="dashboard-new.html" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-800 transition">Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-[60vh] flex items-center justify-center text-center text-white px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">24/7 Roadside Assistance</h1>
+      <p class="text-xl md:text-2xl mb-8">Help is just a call away, anytime, anywhere</p>
+      <p class="text-l md:text-xl mb-8">Complimentary for Comprehensive Insurance Holders</p>
+      <a href="#contact" class="bg-white text-primary font-semibold py-3 px-6 rounded-full transition-all duration-300 inline-block transform hover:scale-105 emergency-btn">
+        <i class="fas fa-phone-alt mr-2"></i>Emergency Call
+      </a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Roadside Services</h2>
     
-    <section id="hero">
-        <h2>24/7 Roadside Assistance</h2>
-        <p>Get help anywhere, anytime with Hexacover's quick and reliable assistance.</p>
-        <button onclick="requestAssistance()">Request Assistance</button>
-    </section>
-
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="service-list">
-            <div class="service-item">🔧 Mechanical Repairs</div>
-            <div class="service-item">🛻 Towing Service</div>
-            <div class="service-item">🔋 Battery Jump Start</div>
-            <div class="service-item">⛽ Fuel Delivery</div>
-            <div class="service-item">🔑 Lockout Service</div>
-            <div class="service-item">🚗 Flat Tire Assistance</div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Towing -->
+      <div class="service-card bg-white rounded-lg overflow-hidden">
+        <div class="p-6 text-center">
+          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-truck text-3xl text-primary"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Towing Service</h3>
+          <p class="text-gray-600 mb-6">Get towed to the nearest repair facility or your preferred location</p>
+          <ul class="text-left mb-6 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Up to 50 miles free</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>24/7 availability</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Approved service providers</span>
+            </li>
+          </ul>
         </div>
-    </section>
+      </div>
 
-    <section id="request">
-        <h2>Request Assistance</h2>
-        <form>
-            <label for="location">Your Location:</label>
-            <input type="text" id="location" placeholder="Enter your location" required>
-            
-            <label for="service">Select Service:</label>
-            <select id="service">
-                <option>Mechanical Repairs</option>
-                <option>Towing Service</option>
-                <option>Battery Jump Start</option>
-                <option>Fuel Delivery</option>
+      <!-- Jump Start -->
+      <div class="service-card bg-white rounded-lg overflow-hidden">
+        <div class="p-6 text-center">
+          <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-car-battery text-3xl text-green-600"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Jump Start</h3>
+          <p class="text-gray-600 mb-6">Dead battery? We'll get you back on the road quickly</p>
+          <ul class="text-left mb-6 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Standard vehicles</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Commercial vehicles</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Motorcycles</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Lockout Service -->
+      <div class="service-card bg-white rounded-lg overflow-hidden">
+        <div class="p-6 text-center">
+          <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-key text-3xl text-purple-600"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-800 mb-4">Lockout Service</h3>
+          <p class="text-gray-600 mb-6">Locked your keys in the car? We can help</p>
+          <ul class="text-left mb-6 space-y-2">
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Car door unlocking</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Trunk access</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check-circle text-green-500 mr-2"></i>
+              <span>Key replacement coordination</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Map -->
+  <section class="py-16 px-4 bg-gray-100">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Service Coverage Area</h2>
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden p-6">
+        <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg flex items-center justify-center">
+          <div class="text-center p-8">
+            <i class="fas fa-map-marked-alt text-5xl text-primary mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">Nationwide Coverage</h3>
+            <p class="text-gray-600">We provide services across all 50 states with over 50,000 service providers</p>
+          </div>
+        </div>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <p class="text-primary">
+              <i class="fas fa-clock mr-2"></i>
+              Average response time: <strong>32 minutes</strong>
+            </p>
+          </div>
+          <div class="bg-green-50 p-4 rounded-lg">
+            <p class="text-green-700">
+              <i class="fas fa-thumbs-up mr-2"></i>
+              Customer satisfaction: <strong>98%</strong>
+            </p>
+          </div>
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <p class="text-purple-700">
+              <i class="fas fa-users mr-2"></i>
+              <strong>2.4 million</strong> members served annually
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12">Get Help Now</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold mb-4">Emergency Contact</h3>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <div class="bg-red-100 rounded-full p-3 mr-4">
+                <i class="fas fa-phone-alt text-red-600"></i>
+              </div>
+              <div>
+                <h4 class="font-bold">24/7 Hotline</h4>
+                <p class="text-gray-600">Call our emergency number for immediate assistance</p>
+                <a href="tel:+18005551234" class="text-primary font-medium mt-1 inline-block">1-800-555-1234</a>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-blue-100 rounded-full p-3 mr-4">
+                <i class="fas fa-mobile-alt text-primary"></i>
+              </div>
+              <div>
+                <h4 class="font-bold">Mobile App</h4>
+                <p class="text-gray-600">Request assistance with GPS location tracking</p>
+                <div class="flex space-x-2 mt-2">
+                  <button class="bg-black text-white px-3 py-1 rounded text-sm">
+                    <i class="fab fa-apple mr-1"></i> App Store
+                  </button>
+                  <button class="bg-green-600 text-white px-3 py-1 rounded text-sm">
+                    <i class="fab fa-google-play mr-1"></i> Play Store
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold mb-4">Request Assistance</h3>
+          <form class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">Your Name</label>
+              <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Phone Number</label>
+              <input type="tel" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">Service Needed</label>
+              <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+                <option>Towing</option>
+                <option>Jump Start</option>
                 <option>Lockout Service</option>
-                <option>Flat Tire Assistance</option>
-            </select>
-            
-            <button type="submit">Submit Request</button>
-        </form>
-    </section>
+                <option>Flat Tire</option>
+                <option>Fuel Delivery</option>
+              </select>
+            </div>
+            <button type="submit" class="bg-primary hover:bg-blue-800 text-white font-medium py-2 px-6 rounded-md transition-all w-full">
+              Request Help
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="status">
-        <h2>Track Your Request</h2>
-        <p>Enter your request ID to check the status of your assistance request.</p>
-        <input type="text" id="request-id" placeholder="Enter Request ID">
-        <button onclick="trackStatus()">Track</button>
-        <div id="status-result"></div>
-    </section>
+  <!-- FAQ Section -->
+  <section class="py-16 px-4 bg-gray-100">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold mb-2">What's included in my roadside assistance coverage?</h3>
+          <p class="text-gray-600">All our Comprehensive Coverage plans include basic roadside assistance (towing, jump starts, lockout service) up to 4 incidents per year. Higher-tier plans offer additional benefits like longer towing distances and rental car coverage.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold mb-2">How quickly can I expect help to arrive?</h3>
+          <p class="text-gray-600">Our average response time is 32 minutes in urban areas and 45 minutes in rural areas. Response times may vary based on location and weather conditions.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h3 class="text-xl font-semibold mb-2">Can I use roadside assistance for someone else's vehicle?</h3>
+          <p class="text-gray-600">Yes, your coverage follows you as the policyholder, not the vehicle. You can request assistance when you're driving any vehicle, including rental cars.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-        <h2>Emergency Contact</h2>
-        <p>Call our 24/7 helpline for immediate assistance: <strong>+1 800 555 1234</strong></p>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Hexacover Insurance. All rights reserved.</p>
-    </footer>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12 px-4">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-bold mb-4">HexaCover</h3>
+        <p class="text-gray-300">Your trusted partner for insurance and roadside protection.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="text-gray-300 hover:text-white transition">Home</a></li>
+          <li><a href="dashboard-new.html" class="text-gray-300 hover:text-white transition">Dashboard</a></li>
+          <li><a href="roadside-assistance.html" class="text-gray-300 hover:text-white transition">Roadside Assistance</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-4">Emergency Contact</h3>
+        <p class="text-gray-300">24/7 Roadside Assistance</p>
+        <p class="text-primary font-medium">1-800-555-1234</p>
+      </div>
+    </div>
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+      <p>© 2023 HexaCover. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>

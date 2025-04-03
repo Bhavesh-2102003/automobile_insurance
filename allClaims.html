@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HexaCover - Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: 'rgb(29, 76, 209)',
+            'primary-light': 'rgba(29, 76, 209, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    // Check login status
+    if (!localStorage.getItem('isLoggedIn')) {
+      window.location.href = 'login.html';
+    }
+
+    // Sample policy data
+    const policies = [
+      {
+        id: 1,
+        vehicleType: 'Car',
+        model: 'Toyota Camry 2020',
+        policyNumber: 'POL-123456',
+        expiryDate: '15/12/2024',
+        premium: '$120/month'
+      },
+      {
+        id: 2,
+        vehicleType: 'Two Wheeler',
+        model: 'Honda Activa 125',
+        policyNumber: 'POL-789012',
+        expiryDate: '30/11/2024',
+        premium: '$45/month'
+      }
+    ];
+
+    function loadPolicies() {
+      const container = document.getElementById('policies-container');
+      container.innerHTML = '';
+
+      policies.forEach(policy => {
+        const policyCard = document.createElement('div');
+        policyCard.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all';
+        policyCard.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-800">${policy.vehicleType} Insurance</h3>
+              <p class="text-gray-600">${policy.model}</p>
+            </div>
+            <span class="bg-primary-light text-primary text-xs px-3 py-1 rounded-full font-medium">Active</span>
+          </div>
+          
+          <div class="mt-4 grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-sm text-gray-500">Policy Number</p>
+              <p class="font-medium">${policy.policyNumber}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Expiry Date</p>
+              <p class="font-medium">${policy.expiryDate}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Premium</p>
+              <p class="font-medium">${policy.premium}</p>
+            </div>
+          </div>
+          
+          <button onclick="fileClaim(${policy.id})" class="mt-4 w-full bg-primary text-white py-2.5 px-4 rounded-lg hover:bg-blue-800 transition duration-200 font-medium">
+            File Claim
+          </button>
+        `;
+        container.appendChild(policyCard);
+      });
+    }
+
+    function fileClaim(policyId) {
+      const policy = policies.find(p => p.id === policyId);
+      if (confirm(`File claim for ${policy.vehicleType} (${policy.policyNumber})?`)) {
+        alert('Claim request submitted successfully! Our team will contact you shortly.');
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      window.location.href = 'login.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPolicies);
+  </script>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-gray-100 min-h-screen">
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <!-- Profile Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+      <div class="flex items-center gap-4">
+        <div class="relative">
+          <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
+            <i class="fas fa-user text-2xl text-primary"></i>
+          </div>
+          <span class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></span>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold text-gray-800">John Doe</h2>
+          <p class="text-gray-500">john.doe@example.com</p>
+          <p class="text-sm text-gray-500">+1 (555) 123-4567</p>
+        </div>
+      </div>
+      
+      <div class="flex gap-3">
+        <a href="index.html" class="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+          <i class="fas fa-home text-gray-600"></i>
+          <span>Home</span>
+        </a>
+        <a href="referAFriend.html" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg transition-all">
+          <i class="fas fa-gift"></i>
+          <span>Refer & Earn</span>
+        </a>
+        <button onclick="logout()" class="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-primary transition-colors">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Referral Banner -->
+    <div class="bg-gradient-to-r from-secondary to-purple-600 rounded-2xl p-6 text-white mb-8 mx-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="bg-white p-4 rounded-md shadow-md text-center sm:text-left text-gray-800">
+        <h3 class="text-xl font-bold">You have 3 successful referrals!</h3>
+        <p class="text-sm opacity-90 mt-1">Earn $50 credit for every friend who joins</p>
+    </div>
+      <a href="referAFriend.html" class="whitespace-nowrap bg-white text-primary px-6 py-3 rounded-lg font-bold hover:bg-gray-50 transition-colors shadow-md">
+        <i class="fas fa-gift mr-2"></i>Refer Friends
+      </a>
+    </div>
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-6 mx-4">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800">Your Insurance Dashboard</h2>
+          <p class="text-gray-500 flex items-center gap-2">
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            All systems operational
+          </p>
+        </div>
+        <div class="flex gap-4">
+          <div class="text-center bg-gradient-to-br from-primary to-blue-700 p-4 rounded-xl text-white">
+            <p class="text-sm">Active Policies</p>
+            <p class="text-3xl font-bold">2</p>
+          </div>
+        </div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 mx-4">
+        <div class="bg-white p-5 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all group">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-500">Total Coverage</p>
+              <p class="text-2xl font-bold text-gray-800">$25,000</p>
+            </div>
+            <div class="bg-primary/10 p-2 rounded-lg group-hover:bg-primary/20 transition-colors">
+              <i class="fas fa-shield-alt text-primary"></i>
+            </div>
+          </div>
+          <div class="mt-4 h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+        
+        <div class="bg-white p-5 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all group">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-500">Claims This Year</p>
+              <p class="text-2xl font-bold text-gray-800">0</p>
+            </div>
+            <div class="bg-green-100/50 p-2 rounded-lg group-hover:bg-green-100/70 transition-colors">
+              <i class="fas fa-check-circle text-green-600"></i>
+            </div>
+          </div>
+          <p class="mt-2 text-sm text-green-600 font-medium">No pending claims</p>
+        </div>
+        
+        <div class="bg-white p-5 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all group">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-500">Renewal Due</p>
+              <p class="text-2xl font-bold text-gray-800">${policies[0].expiryDate}</p>
+            </div>
+            <div class="bg-amber-100/50 p-2 rounded-lg group-hover:bg-amber-100/70 transition-colors">
+              <i class="fas fa-calendar-alt text-amber-600"></i>
+            </div>
+          </div>
+          <p class="mt-2 text-sm text-amber-600 font-medium">30 days remaining</p>
+        </div>
+      </div>
+      
+      <div class="bg-gradient-to-r from-primary to-blue-600 rounded-xl p-6 text-white mb-8 mx-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-lg font-semibold">Need to make a claim?</h3>
+            <p class="text-sm opacity-90">Our team is available 24/7 to assist you</p>
+          </div>
+          <button class="bg-white text-primary px-4 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+            Emergency Contact
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-8 mx-4">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Your Policies</h3>
+      <div id="policies-container" class="grid md:grid-cols-2 gap-6 mb-8">
+      <!-- Policies will be loaded here dynamically -->
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 mx-4">
+      <div class="lg:col-span-2 bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-lg font-semibold text-gray-800">Policy Activity</h3>
+          <div class="flex gap-2">
+            <button class="px-3 py-1 text-sm bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">This Year</button>
+            <button class="px-3 py-1 text-sm bg-primary text-white rounded-lg hover:bg-blue-800 transition-colors">All Time</button>
+          </div>
+        </div>
+        <div class="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
+          <p class="text-gray-400">Claims activity chart will appear here</p>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-6">Quick Actions</h3>
+        <div class="space-y-3">
+          <button class="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-primary">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <span class="text-left">
+              <p class="font-medium">View Policy Documents</p>
+              <p class="text-xs text-gray-500">Download your insurance certificates</p>
+            </span>
+          </button>
+          <button class="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <span class="text-left">
+              <p class="font-medium">Add New Vehicle</p>
+              <p class="text-xs text-gray-500">Get coverage for another vehicle</p>
+            </span>
+          </button>
+          <button class="w-full flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <span class="text-left">
+              <p class="font-medium">Get Help</p>
+              <p class="text-xs text-gray-500">Contact our support team</p>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

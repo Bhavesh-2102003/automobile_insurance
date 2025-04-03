@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Claim Form | HexaCover</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .form-section {
+            background: linear-gradient(rgba(29,76,209,0.8), rgba(103,58,183,0.8));
+            background-size: cover;
+        }
+        .otp-input {
+            width: 3rem;
+            height: 3rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-step.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+      <!-- Progress Bar -->
+      <div class="bg-gray-200 w-full fixed top-0 left-0 z-50">
+        <div id="progressBar" class="h-1 bg-blue-600 transition-all duration-500" style="width: 25%"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-16 pt-20">
+        <!-- Step 1: OTP Verification -->
+        <div id="step1" class="form-step active max-w-md mx-auto">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl text-blue-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Verify Your Identity</h2>
+                    <p class="text-gray-600 mt-2">We've sent a 6-digit code to your registered mobile number</p>
+                </div>
+                
+                <form id="otpForm" class="space-y-6">
+                    <div>
+                        <label for="mobile" class="block text-sm font-medium text-gray-700 mb-1">Mobile Number*</label>
+                        <div class="flex">
+                            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                +91
+                            </span>
+                            <input type="tel" id="mobile" name="mobile" required
+                                class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Enter OTP*</label>
+                        <div class="flex justify-center space-x-2">
+                            <input type="text" maxlength="1" class="otp-input border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input type="text" maxlength="1" class="otp-input border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input type="text" maxlength="1" class="otp-input border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input type="text" maxlength="1" class="otp-input border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input type="text" maxlength="1" class="otp-input border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input type="text" maxlength="1" class="otp-input border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="text-right mt-2">
+                            <button type="button" id="resendOtp" class="text-blue-600 text-sm hover:text-blue-800 disabled:text-gray-400" disabled>
+                                Resend OTP (30s)
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
+                        Verify & Continue
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- [Rest of the form steps and scripts would follow here] -->
+    </div>
+
+        <!-- Step 2: Policy Selection -->
+        <div id="step2" class="form-step max-w-3xl mx-auto">
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Select Policy for Claim</h2>
+                <p class="text-gray-600 text-center mb-8">Please select the policy you want to file a claim for</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="policyContainer">
+                    <!-- Policies will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <script>
+                // Sample policy data - in production this would come from an API
+                const policies = [
+                    {
+                        id: 1,
+                        vehicle: "Toyota Camry",
+                        policyNumber: "POL12345678",
+                        type: "Comprehensive",
+                        expiry: "15 Jun 2024",
+                        status: "Active"
+                    },
+                    {
+                        id: 2, 
+                        vehicle: "Honda City",
+                        policyNumber: "POL87654321",
+                        type: "Zero Depreciation",
+                        expiry: "30 Sep 2024",
+                        status: "Active"
+                    },
+                    {
+                        id: 3,
+                        vehicle: "Royal Enfield",
+                        policyNumber: "POL13579246",
+                        type: "Third-Party",
+                        expiry: "31 Dec 2024",
+                        status: "Active"
+                    }
+                ];
+
+                // Render policy cards
+                const policyContainer = document.getElementById('policyContainer');
+                policies.forEach(policy => {
+                    const card = document.createElement('div');
+                    card.className = 'policy-card bg-white border border-gray-200 rounded-lg p-4 cursor-pointer transition-all hover:shadow-md';
+                    card.innerHTML = `
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-car text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">${policy.vehicle}</h3>
+                                <p class="text-sm text-gray-500">${policy.policyNumber}</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <p><span class="font-medium">Type:</span> ${policy.type}</p>
+                            <p><span class="font-medium">Expires:</span> ${policy.expiry}</p>
+                            <p><span class="font-medium">Status:</span> <span class="text-green-600">${policy.status}</span></p>
+                        </div>
+                        <button class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md text-sm font-medium transition select-policy">
+                            Select Policy
+                        </button>
+                    `;
+                    
+                    card.querySelector('.select-policy').addEventListener('click', () => {
+                        selectedPolicy = policy;
+                        document.querySelectorAll('.policy-card').forEach(c => {
+                            c.classList.remove('border-blue-500', 'bg-blue-50');
+                        });
+                        card.classList.add('border-blue-500', 'bg-blue-50');
+                        setTimeout(() => showStep(3), 500);
+                    });
+                    
+                    policyContainer.appendChild(card);
+                });
+            </script>
+        </div>
+
+        <!-- Step 3: Claim Form -->
+        <div id="step3" class="form-step">
+            <div class="form-section rounded-xl shadow-lg mb-8 flex items-center justify-center h-48">
+                <div class="text-center text-white">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4">Claim Submission</h1>
+                    <p class="text-lg md:text-xl">Complete your claim details below</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 max-w-4xl mx-auto">
+                <form id="claimForm" class="space-y-6">
+                    <!-- Personal Information -->
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Personal Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name*</label>
+                                <input type="text" id="fullName" name="fullName" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email*</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number*</label>
+                                <input type="tel" id="phone" name="phone" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="policyNumber" class="block text-sm font-medium text-gray-700 mb-1">Policy Number*</label>
+                                <input type="text" id="policyNumber" name="policyNumber" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Claim Details -->
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Claim Details</h2>
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label for="claimType" class="block text-sm font-medium text-gray-700 mb-1">Claim Type*</label>
+                                <select id="claimType" name="claimType" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <option value="" disabled selected>Select claim type</option>
+                                    <option value="accident">Accident</option>
+                                    <option value="theft">Theft</option>
+                                    <option value="fire">Fire</option>
+                                    <option value="natural_disaster">Natural Disaster</option>
+                                </select>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="incidentDate" class="block text-sm font-medium text-gray-700 mb-1">Incident Date*</label>
+                                    <input type="date" id="incidentDate" name="incidentDate" required
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label for="incidentTime" class="block text-sm font-medium text-gray-700 mb-1">Incident Time*</label>
+                                    <input type="time" id="incidentTime" name="incidentTime" required
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="incidentLocation" class="block text-sm font-medium text-gray-700 mb-1">Location Details*</label>
+                                <textarea id="incidentLocation" name="incidentLocation" rows="3" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                            </div>
+
+                            <div>
+                                <label for="incidentDescription" class="block text-sm font-medium text-gray-700 mb-1">Description*</label>
+                                <textarea id="incidentDescription" name="incidentDescription" rows="4" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Was a police report filed?*</label>
+                                    <div class="flex space-x-4">
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" name="policeReport" value="yes" required
+                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                            <span class="ml-2 text-gray-700">Yes</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" name="policeReport" value="no" required
+                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                            <span class="ml-2 text-gray-700">No</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div id="policeReportDetails" class="hidden">
+                                    <label for="policeReportNumber" class="block text-sm font-medium text-gray-700 mb-1">Report Number</label>
+                                    <input type="text" id="policeReportNumber" name="policeReportNumber"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Section -->
+                    <div class="space-y-6">
+                        <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Documents</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="damagePhotos" class="block text-sm font-medium text-gray-700 mb-1">Photos of Damage*</label>
+                                <p class="text-sm text-gray-500 mb-2">Upload clear photos showing all damage (max 5 files)</p>
+                                <input type="file" id="damagePhotos" name="damagePhotos" multiple accept="image/*" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div>
+                                <label for="repairEstimate" class="block text-sm font-medium text-gray-700 mb-1">Repair Estimate</label>
+                                <p class="text-sm text-gray-500 mb-2">Upload estimate from authorized garage (PDF or image)</p>
+                                <input type="file" id="repairEstimate" name="repairEstimate" accept=".pdf,.jpg,.jpeg,.png"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                            <div id="policeReportUpload" class="hidden">
+                                <label for="policeReportFile" class="block text-sm font-medium text-gray-700 mb-1">Police Report Copy</label>
+                                <p class="text-sm text-gray-500 mb-2">Upload scanned copy of police report</p>
+                                <input type="file" id="policeReportFile" name="policeReportFile" accept=".pdf,.jpg,.jpeg,.png"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        // Conditional field logic
+                        document.querySelectorAll('input[name="policeReport"]').forEach(radio => {
+                            radio.addEventListener('change', function() {
+                                const showDetails = this.value === 'yes';
+                                document.getElementById('policeReportDetails').classList.toggle('hidden', !showDetails);
+                                document.getElementById('policeReportUpload').classList.toggle('hidden', !showDetails);
+                                
+                                if (showDetails) {
+                                    document.getElementById('policeReportNumber').required = true;
+                                    document.getElementById('policeReportFile').required = true;
+                                } else {
+                                    document.getElementById('policeReportNumber').required = false;
+                                    document.getElementById('policeReportFile').required = false;
+                                }
+                            });
+                        });
+
+                        // Dynamic validation based on claim type
+                        document.getElementById('claimType').addEventListener('change', function() {
+                            const isTheft = this.value === 'theft';
+                            document.querySelectorAll('input[name="policeReport"]')[0].required = isTheft;
+                        });
+                    </script>
+
+                    <!-- Terms and Submit -->
+                    <div class="pt-4">
+                        <div class="flex items-center">
+                            <input id="terms" name="terms" type="checkbox" required
+                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="terms" class="ml-2 block text-sm text-gray-700">
+                                I agree to the <a href="#" class="text-blue-600 hover:text-blue-500">terms and conditions</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit"
+                            class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
+                            Submit Claim
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            // Form validation and submission
+            document.getElementById('claimForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate all required fields
+                let isValid = true;
+                const form = e.target;
+                
+                // Check required text/select fields
+                form.querySelectorAll('input[required]:not([type="radio"]):not([type="file"]), select[required], textarea[required]').forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('border-red-500');
+                    }
+                });
+                
+                // Check required radio buttons
+                form.querySelectorAll('input[type="radio"][required]').forEach(radioGroup => {
+                    const name = radioGroup.name;
+                    if (!form.querySelector(`input[name="${name}"]:checked`)) {
+                        form.querySelectorAll(`input[name="${name}"]`).forEach(radio => {
+                            radio.closest('label').classList.add('text-red-600');
+                        });
+                        isValid = false;
+                    } else {
+                        form.querySelectorAll(`input[name="${name}"]`).forEach(radio => {
+                            radio.closest('label').classList.remove('text-red-600');
+                        });
+                    }
+                });
+                
+                // Check required file uploads
+                form.querySelectorAll('input[type="file"][required]').forEach(fileInput => {
+                    if (fileInput.files.length === 0) {
+                        fileInput.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        fileInput.classList.remove('border-red-500');
+                    }
+                });
+                
+                // Special validation for theft claims
+                if (document.getElementById('claimType').value === 'theft') {
+                    const policeReport = form.querySelector('input[name="policeReport"]:checked');
+                    if (!policeReport || policeReport.value === 'no') {
+                        alert('Police report is required for theft claims');
+                        isValid = false;
+                    }
+                }
+                
+                if (!isValid) {
+                    alert('Please complete all required fields');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <i class="fas fa-spinner fa-spin mr-2"></i> Processing...
+                `;
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.className = 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50';
+                successMsg.innerHTML = `
+                    <div class="bg-white rounded-xl p-8 max-w-md mx-4 text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Claim Submitted Successfully!</h3>
+                        <p class="text-gray-600 mb-6">Your claim reference number is CL-${Math.floor(100000 + Math.random() * 900000)}</p>
+                        <button onclick="this.closest('div').remove()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md">
+                            Close
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(successMsg);
+            });
+        </script>
+    </div>
+
+    
+    <script>
+        // Form navigation and state management
+        let currentStep = 1;
+        const totalSteps = 3;
+        let selectedPolicy = null;
+
+        function showStep(step) {
+            document.querySelectorAll('.form-step').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        // Initialize form
+        document.addEventListener('DOMContentLoaded', () => {
+            showStep(1);
+        });
+
+        // OTP form submission
+        document.getElementById('otpForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validate OTP fields
+            const otpInputs = document.querySelectorAll('.otp-input');
+            let otpValid = true;
+            let otpCode = '';
+            
+            otpInputs.forEach(input => {
+                if (!input.value || input.value.length !== 1) {
+                    input.classList.add('border-red-500');
+                    otpValid = false;
+                } else {
+                    input.classList.remove('border-red-500');
+                    otpCode += input.value;
+                }
+            });
+            
+            if (!otpValid) {
+                alert('Please enter a complete 6-digit OTP code');
+                return;
+            }
+            
+            // Simulate OTP verification
+            setTimeout(() => {
+                showStep(2);
+            }, 500);
+        });
+    </script>
+</body>
+</html>

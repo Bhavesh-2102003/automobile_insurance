@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HexaCover - Refer & Earn</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: 'rgb(29, 76, 209)',
+            secondary: 'rgb(103, 58, 183)'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-indigo-50 min-h-screen">
+  <div class="container mx-auto px-4 py-12 max-w-6xl">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+      <div class="mx-auto w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mb-6 shadow-lg">
+        <i class="fas fa-gift text-4xl text-white"></i>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Give $50, Get $50</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Share HexaCover with friends and you'll both get <span class="font-bold text-primary">$50 credit</span> when they sign up!
+      </p>
+    </div>
+
+    <!-- Referral Progress -->
+    <!-- <div class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-gray-100">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
+        <div class="text-center">
+          <p class="text-sm text-gray-500">Your Referrals</p>
+          <p class="text-4xl font-bold text-primary">3</p>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-500">Earned Credit</p>
+          <p class="text-4xl font-bold text-secondary">$150</p>
+        </div>
+        <div class="text-center">
+          <p class="text-sm text-gray-500">Next Reward</p>
+          <p class="text-4xl font-bold text-gray-800">$200</p>
+        </div>
+      </div> -->
+
+      <!-- <div class="relative pt-1 mb-8">
+        <div class="flex mb-2 items-center justify-between">
+          <div>
+            <span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-primary bg-primary/10">
+              Progress
+            </span>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-semibold inline-block text-primary">
+              75%
+            </span>
+          </div>
+        </div>
+        <div class="overflow-hidden h-4 mb-4 text-xs flex rounded-full bg-gray-200">
+          <div style="width:75%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-primary to-secondary"></div>
+        </div>
+        <p class="text-sm text-gray-500 text-center">4 more referrals to unlock $200 bonus</p>
+      </div>
+    </div> -->
+
+    <!-- Referral Methods -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      <!-- Email Invites -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <i class="fas fa-envelope text-primary"></i>
+          Email Invites
+        </h3>
+        <div class="space-y-4">
+          <input type="email" placeholder="Friend's Email" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+          <textarea placeholder="Personal Message (Optional)" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" rows="3"></textarea>
+          <button class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-bold hover:shadow-lg transition-all">
+            Send Invite
+          </button>
+        </div>
+      </div>
+
+      <!-- Share Links -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+          <i class="fas fa-share-alt text-secondary"></i>
+          Share Your Link
+        </h3>
+        <div class="flex mb-4">
+          <input type="text" value="hexacover.com/ref/yourusername" readonly class="flex-1 px-4 py-3 border rounded-l-lg bg-gray-50">
+          <button class="bg-primary text-white px-4 rounded-r-lg hover:bg-blue-800 transition-colors">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <p class="text-sm text-gray-500 mb-4">Share your unique link via:</p>
+        <div class="flex gap-3">
+          <button class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition-colors">
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors">
+            <i class="fab fa-twitter"></i>
+          </button>
+          <button class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white hover:bg-pink-600 transition-colors">
+            <i class="fab fa-instagram"></i>
+          </button>
+          <button class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white hover:bg-green-600 transition-colors">
+            <i class="fab fa-whatsapp"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 text-white mb-12">
+      <h3 class="text-2xl font-bold mb-6">What Our Members Say</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-white rounded-full"></div>
+            <div>
+              <p class="font-bold">Sarah K.</p>
+              <p class="text-sm opacity-80">Earned $250</p>
+            </div>
+          </div>
+          <p>"I referred 5 friends and got $250 credit towards my premium! So easy and rewarding."</p>
+        </div>
+        <div class="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-white rounded-full"></div>
+            <div>
+              <p class="font-bold">Michael T.</p>
+              <p class="text-sm opacity-80">Earned $150</p>
+            </div>
+          </div>
+          <p>"The referral process was seamless and my friends loved the $50 welcome bonus too!"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6">Frequently Asked Questions</h3>
+      <div class="space-y-4">
+        <div class="border-b border-gray-200 pb-4">
+          <button class="flex justify-between items-center w-full text-left font-medium text-gray-800">
+            <span>How does the referral program work?</span>
+            <i class="fas fa-chevron-down text-primary"></i>
+          </button>
+          <div class="mt-2 text-gray-600 hidden">
+            When your friend signs up using your referral link and purchases a policy, you both receive $50 credit after their first payment.
+          </div>
+        </div>
+        <div class="border-b border-gray-200 pb-4">
+          <button class="flex justify-between items-center w-full text-left font-medium text-gray-800">
+            <span>Is there a limit to how much I can earn?</span>
+            <i class="fas fa-chevron-down text-primary"></i>
+          </button>
+          <div class="mt-2 text-gray-600 hidden">
+            No! You can earn unlimited referral bonuses. We also offer special rewards when you reach certain milestones.
+          </div>
+        </div>
+        <div class="border-b border-gray-200 pb-4">
+          <button class="flex justify-between items-center w-full text-left font-medium text-gray-800">
+            <span>When will I receive my referral credit?</span>
+            <i class="fas fa-chevron-down text-primary"></i>
+          </button>
+          <div class="mt-2 text-gray-600 hidden">
+            Credits are applied to your account immediately after your friend's first premium payment clears.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center space-x-4 mt-6">
+      <a href="index.html" class="bg-gradient-to-r from-green-500 to-green-400 hover:from-green-600 hover:to-green-500 text-white font-bold py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-150 ease-in-out shadow-md">
+          Go Home
+      </a>
+  </div>
+  </div>
+
+  <script>
+    // Simple FAQ toggle
+    document.querySelectorAll('.border-b button').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.classList.toggle('hidden');
+        const icon = button.querySelector('i');
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+      });
+    });
+
+    // Copy referral link
+    document.querySelector('button.fa-copy').addEventListener('click', () => {
+      const link = document.querySelector('input[readonly]');
+      link.select();
+      document.execCommand('copy');
+      alert('Referral link copied to clipboard!');
+    });
+  </script>
+</body>
+</html>

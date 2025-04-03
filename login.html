@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HexaCover - Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: 'rgb(29, 76, 209)',
+            'primary-light': 'rgba(29, 76, 209, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script>
+    function handleLogin() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      if (!email || !password) {
+        alert('Please fill all fields');
+        return;
+      }
+      
+      localStorage.setItem('isLoggedIn', 'true');
+      window.location.href = 'allClaims.html';
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-gray-100 min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-100">
+    <div class="text-center mb-8">
+      <div class="mx-auto w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mb-4">
+        <i class="fas fa-shield-alt text-2xl text-primary"></i>
+      </div>
+      <h1 class="text-3xl font-bold text-gray-800 text-center">Welcome Back</h1>
+      <p class="text-gray-500 text-center mt-1">Login to your HexaCover account</p>
+    </div>
+    
+    <div class="space-y-4">
+      <div>
+        <label class="block text-gray-700 mb-1">Email</label>
+        <input id="email" type="email" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+      </div>
+      
+      <div>
+        <label class="block text-gray-700 mb-1">Password</label>
+        <input id="password" type="password" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
+      </div>
+      
+      <button onclick="handleLogin()" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-blue-800 transition duration-200">
+        Login
+      </button>
+      
+      <div class="flex justify-between text-sm mt-4">
+        <a href="resetPassword.html" class="text-primary hover:underline font-medium">Forgot password?</a>
+        <a href="signup.html" class="text-gray-600 hover:text-primary">Don't have an account? <span class="font-medium">Sign up</span></a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
